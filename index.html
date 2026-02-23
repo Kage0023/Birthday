@@ -1,0 +1,507 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Happy 26th 🐾🎂</title>
+
+  <style>
+    :root{
+      --bg1:#fff7fb;
+      --bg2:#ffe3ee;
+      --card:#ffffffd9;
+      --text:#202020;
+      --muted:#5b5b5b;
+      --accent:#ff5b84;
+      --accent2:#ff93b1;
+      --shadow: 0 18px 40px rgba(0,0,0,.10);
+      --radius: 26px;
+    }
+
+    *{ box-sizing:border-box; }
+    body{
+      margin:0;
+      font-family: ui-rounded, system-ui, -apple-system, "Segoe UI", Roboto, Arial;
+      color:var(--text);
+      background:
+        radial-gradient(1200px 600px at 10% 0%, var(--bg2), transparent 60%),
+        radial-gradient(900px 500px at 90% 10%, #ffeef5, transparent 55%),
+        linear-gradient(180deg, var(--bg1), #ffffff);
+      min-height:100vh;
+      overflow-x:hidden;
+    }
+
+    /* floating cute dots */
+    .sparkles{
+      position:fixed; inset:0;
+      pointer-events:none;
+      opacity:.55;
+      z-index:0;
+      overflow:hidden;
+    }
+    .sp{
+      position:absolute;
+      width:10px;height:10px;border-radius:50%;
+      background: rgba(255,91,132,.22);
+      animation: floatUp linear infinite;
+    }
+    @keyframes floatUp{
+      from{ transform: translateY(20vh); opacity:0; }
+      10%{ opacity:.9; }
+      to{ transform: translateY(-120vh); opacity:0; }
+    }
+
+    .wrap{
+      position:relative;
+      z-index:1;
+      max-width: 880px;
+      margin: 0 auto;
+      padding: 22px 16px 56px;
+    }
+
+    .topbar{
+      display:flex;
+      justify-content:space-between;
+      align-items:center;
+      gap:10px;
+      margin-bottom:12px;
+      flex-wrap:wrap;
+    }
+
+    .pill{
+      display:inline-flex;
+      align-items:center;
+      gap:10px;
+      padding:10px 14px;
+      border-radius:999px;
+      background: rgba(255,255,255,.78);
+      border: 1px solid rgba(0,0,0,.06);
+      box-shadow: 0 10px 22px rgba(0,0,0,.05);
+      backdrop-filter: blur(8px);
+      font-size: 14px;
+      color: var(--muted);
+    }
+    .dot{
+      width:10px;height:10px;border-radius:50%;
+      background: linear-gradient(135deg, var(--accent), var(--accent2));
+      box-shadow: 0 0 0 6px rgba(255,91,132,.12);
+    }
+
+    .btn{
+      border:none;
+      cursor:pointer;
+      padding: 14px 16px;
+      border-radius: 16px;
+      font-weight: 800;
+      font-size: 16px;
+      background: linear-gradient(135deg, var(--accent), var(--accent2));
+      color:#fff;
+      box-shadow: 0 14px 30px rgba(255,91,132,.25);
+      transition: transform .15s ease, filter .15s ease;
+    }
+    .btn:hover{ transform: translateY(-1px); filter:saturate(1.05); }
+    .btn:active{ transform: translateY(0) scale(.99); }
+
+    .btn.ghost{
+      background: rgba(255,255,255,.75);
+      color: var(--text);
+      border: 1px solid rgba(0,0,0,.06);
+      box-shadow: 0 12px 24px rgba(0,0,0,.06);
+    }
+
+    .card{
+      background: var(--card);
+      border: 1px solid rgba(0,0,0,.06);
+      border-radius: var(--radius);
+      box-shadow: var(--shadow);
+      backdrop-filter: blur(10px);
+      overflow:hidden;
+    }
+
+    /* Hero */
+    .hero{
+      padding: 26px 18px;
+      text-align:left;
+    }
+    .kicker{
+      display:inline-block;
+      font-size: 14px;
+      color: var(--muted);
+      background: rgba(255,255,255,.8);
+      border:1px solid rgba(0,0,0,.06);
+      padding: 8px 12px;
+      border-radius: 999px;
+      margin-bottom: 12px;
+    }
+    .title{
+      margin: 0 0 10px;
+      font-size: clamp(34px, 5.5vw, 52px);
+      line-height: 1.05;
+      letter-spacing: -0.02em;
+    }
+    .subtitle{
+      margin:0 0 16px;
+      font-size: clamp(18px, 2.6vw, 22px);
+      line-height: 1.7;
+      color: var(--muted);
+      max-width: 60ch;
+    }
+    .heroActions{
+      display:flex;
+      gap:10px;
+      flex-wrap:wrap;
+    }
+
+    /* Steps */
+    .steps{ margin-top: 14px; }
+    .step{ display:none; padding: 22px 18px; }
+    .step.active{ display:block; animation: in .45s ease; }
+    @keyframes in{
+      from{ opacity:0; transform: translateY(10px); }
+      to{ opacity:1; transform: translateY(0); }
+    }
+
+    .stepTop{
+      display:flex;
+      align-items:center;
+      justify-content:space-between;
+      gap:10px;
+      flex-wrap:wrap;
+      margin-bottom: 10px;
+    }
+    .stepTitle{
+      margin:0;
+      font-size: clamp(22px, 3vw, 28px);
+      letter-spacing: -.01em;
+    }
+    .progress{
+      font-size: 14px;
+      color: var(--muted);
+      padding: 8px 12px;
+      border-radius: 999px;
+      background: rgba(255,255,255,.78);
+      border: 1px solid rgba(0,0,0,.06);
+    }
+
+    .msg{
+      margin-top: 10px;
+      padding: 18px 16px;
+      border-radius: 22px;
+      background: rgba(255,255,255,.78);
+      border: 1px solid rgba(0,0,0,.06);
+      font-size: clamp(19px, 2.8vw, 24px);
+      line-height: 1.75;
+    }
+    .msg b{ color: var(--accent); }
+
+    .small{
+      margin-top: 10px;
+      color: var(--muted);
+      font-size: 15px;
+      line-height: 1.7;
+    }
+
+    .gifBox{
+      margin-top: 14px;
+      border-radius: 22px;
+      overflow:hidden;
+      border: 1px solid rgba(0,0,0,.06);
+      background: rgba(255,255,255,.7);
+    }
+    .gifBox img{
+      width: 100%;
+      height: auto;
+      display:block;
+    }
+    .gifHint{
+      padding: 10px 12px;
+      font-size: 14px;
+      color: var(--muted);
+    }
+
+    .actions{
+      margin-top: 16px;
+      display:flex;
+      gap:10px;
+      flex-wrap:wrap;
+    }
+
+    /* Reasons as cute chips */
+    .reasons{
+      margin-top: 12px;
+      display:grid;
+      grid-template-columns: 1fr 1fr;
+      gap:10px;
+    }
+    @media (max-width:720px){
+      .reasons{ grid-template-columns: 1fr; }
+    }
+    .reason{
+      display:flex;
+      gap:10px;
+      align-items:flex-start;
+      padding: 14px 14px;
+      border-radius: 20px;
+      background: rgba(255,255,255,.78);
+      border: 1px solid rgba(0,0,0,.06);
+      font-size: 18px;
+      line-height: 1.5;
+    }
+    .num{
+      width:34px;height:34px;
+      border-radius: 14px;
+      background: linear-gradient(135deg, rgba(255,91,132,.22), rgba(255,143,176,.22));
+      display:flex;
+      align-items:center;
+      justify-content:center;
+      font-weight: 900;
+      color: rgba(0,0,0,.62);
+      flex: 0 0 auto;
+    }
+
+    .toast{
+      position: fixed;
+      left: 50%;
+      transform: translateX(-50%);
+      bottom: 16px;
+      background: rgba(255,255,255,.86);
+      border:1px solid rgba(0,0,0,.08);
+      padding: 10px 12px;
+      border-radius: 999px;
+      box-shadow: 0 16px 30px rgba(0,0,0,.12);
+      backdrop-filter: blur(10px);
+      display:none;
+      z-index:5;
+      font-size: 14px;
+      color: var(--muted);
+      text-align:center;
+    }
+    .toast.show{ display:block; animation: pop .25s ease; }
+    @keyframes pop{
+      from{ transform: translateX(-50%) translateY(8px); opacity:0;}
+      to{ transform: translateX(-50%) translateY(0); opacity:1;}
+    }
+  </style>
+</head>
+
+<body>
+  <div class="sparkles" id="sparkles"></div>
+
+  <div class="wrap">
+    <div class="topbar">
+      <div class="pill"><span class="dot"></span> For my<b>bby</b> • tiny birthday web 🐾🎂</div>
+    </div>
+
+    <div class="card hero">
+      <div class="kicker">🎂 + 🐱 + 💗 • love u bby</div>
+      <h1 class="title">Happy 26th Birthday, bby 💗🎂</h1>
+      <p class="subtitle">
+        I wanted something <b>cute</b> and also <b>real</b>.
+        
+      </p>
+      <div class="heroActions">
+        <button class="btn" onclick="go(1)">Open 🐾</button>
+        <button class="btn ghost" onclick="toggleSparkles()">Toggle sparkles ✨</button>
+      </div>
+    </div>
+
+    <div class="card steps">
+      <!-- STEP 1 -->
+      <div class="step" id="step1">
+        <div class="stepTop">
+          <h2 class="stepTitle">First… I’m sorry bby 🥺</h2>
+          <div class="progress">1 / 5</div>
+        </div>
+
+        <div class="msg">
+          I forgot your birthday date… and I didn’t match your energy on Valentine’s Day.<br><br>
+          You didn’t deserve that. <b>You matter to me, bby.</b>
+        </div>
+
+        <div class="gifBox">
+          <!-- Replace src with a direct GIF link -->
+          <img id="gif1" src="https://media1.giphy.com/media/v1.Y2lkPTc5MGI3NjExYzdhbXk0cnN0bTNndXU3cHVyczlneXphYzJmMDV3dTV6MWNxOHJxbCZlcD12MV9pbnRlcm5hbF9naWZfYnlfaWQmY3Q9Zw/tT62urTtAGqicrZYou/giphy.gif" alt="cute gif">
+          <div class="gifHint">🐱 </div>
+        </div>
+
+        <div class="actions">
+          <button class="btn" onclick="go(2)">Continue ➜</button>
+        </div>
+      </div>
+
+      <!-- STEP 2 -->
+      <div class="step" id="step2">
+        <div class="stepTop">
+          <h2 class="stepTitle">What I should’ve said 💌</h2>
+          <div class="progress">2 / 5</div>
+        </div>
+
+        <div class="msg">
+          When you sent me that sweet message, I should’ve met you there<br>
+          with the same warmth, the same depth, and the same certainty.<br><br>
+          I’m learning to show up for you<b>properly</b>, bby.
+        </div>
+
+        <div class="gifBox">
+          <img id="gif2" src="https://media.giphy.com/media/v1.Y2lkPTc5MGI3NjExdWhrOHY5ZXB1aXBncmd2M3lwemNqbWEwd21vbG9hb2N5NHB5Z2U5ZyZlcD12MV9naWZzX3NlYXJjaCZjdD1n/sNPeJFq6YNEvLZdcqX/giphy.gif" alt="cute gif">
+          <div class="gifHint">💗</div>
+        </div>
+
+        <div class="actions">
+          <button class="btn ghost" onclick="go(1)">⬅ Back</button>
+          <button class="btn" onclick="go(3)">Continue ➜</button>
+        </div>
+      </div>
+
+      <!-- STEP 3 -->
+      <div class="step" id="step3">
+        <div class="stepTop">
+          <h2 class="stepTitle">Since May 2025 🗓️</h2>
+          <div class="progress">3 / 5</div>
+        </div>
+
+        <div class="msg">
+          Since last May, you became someone I genuinely care about, bby.<br><br>
+          I admire your mind, your softness, and your strength. 🐾🤍
+        </div>
+
+        <div class="gifBox">
+          <img id="gif3" src="https://media.giphy.com/media/v1.Y2lkPTc5MGI3NjExNGpwZDRhMWJ4MTRhenQ0aWR1NzRraHdkN2hpY242anp0cTI2ODN4bCZlcD12MV9naWZzX3NlYXJjaCZjdD1n/wumLmqIVT4yDwsZiqD/giphy.gif" alt="cute gif">
+          <div class="gifHint">🎂</div>
+        </div>
+
+        <div class="small">
+         😼✨
+        </div>
+
+        <div class="actions">
+          <button class="btn ghost" onclick="go(2)">⬅ Back</button>
+          <button class="btn" onclick="go(4)">Continue ➜</button>
+        </div>
+      </div>
+
+      <!-- STEP 4 -->
+      <div class="step" id="step4">
+        <div class="stepTop">
+          <h2 class="stepTitle">26 cute reasons 🐱🎀</h2>
+          <div class="progress">4 / 5</div>
+        </div>
+
+        <div class="small">Specific things about you = cutest, bby 🐱💗</div>
+        <div class="reasons" id="reasons"></div>
+
+        <div class="actions">
+          <button class="btn ghost" onclick="go(3)">⬅ Back</button>
+          <button class="btn" onclick="go(5)">Final ➜</button>
+        </div>
+      </div>
+
+      <!-- STEP 5 -->
+      <div class="step" id="step5">
+        <div class="stepTop">
+          <h2 class="stepTitle">Happy Birthday bby 🤍🎂</h2>
+          <div class="progress">5 / 5</div>
+        </div>
+
+        <div class="msg">
+          Thank you for being patient with me.<br>
+          Thank you for loving deeply.<br><br>
+          I’m learning how to love you better,because I want to. 🥹💗
+        </div>
+
+        <div class="actions">
+          <button class="btn ghost" onclick="go(4)">⬅ Back</button>
+          <button class="btn" onclick="toast('I choose you, bby. Today and after today. 🐾🤍')">Click me 😼</button>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="toast" id="toast"></div>
+
+  <script>
+    // Sparkles background
+    const sparklesEl = document.getElementById('sparkles');
+    let sparklesOn = true;
+
+    function spawnSparkles(){
+      sparklesEl.innerHTML = '';
+      const count = 22;
+      for(let i=0;i<count;i++){
+        const s = document.createElement('div');
+        s.className = 'sp';
+        s.style.left = (Math.random()*100) + 'vw';
+        const size = 6 + Math.random()*10;
+        s.style.width = size + 'px';
+        s.style.height = size + 'px';
+        s.style.animationDuration = (8 + Math.random()*12) + 's';
+        s.style.animationDelay = (Math.random()*6) + 's';
+        s.style.opacity = (0.18 + Math.random()*0.55).toFixed(2);
+        sparklesEl.appendChild(s);
+      }
+    }
+    spawnSparkles();
+
+    function toggleSparkles(){
+      sparklesOn = !sparklesOn;
+      sparklesEl.style.display = sparklesOn ? 'block' : 'none';
+      toast(sparklesOn ? 'Sparkles on ✨' : 'Sparkles off');
+    }
+
+    // Steps navigation
+    function go(n){
+      document.querySelectorAll('.step').forEach(s => s.classList.remove('active'));
+      document.getElementById('step' + n).classList.add('active');
+      window.scrollTo({ top: 0, behavior: 'smooth' });
+    }
+
+    // Reasons (26)
+    const reasons = [
+      "Your smile when you’re genuinely happy 😊",
+      "The way you care deeply 💗",
+      "Your emotional honesty 🥹",
+      "Your patience (even when I mess up) 🙏",
+      "Your intelligence 🧠✨",
+      "Your laugh (it’s my favorite) 😄",
+      "How sweet your messages are 💌",
+      "Your warmth 🔥🤍",
+      "Your independence 👑",
+      "Your softness 🎀",
+      "Your ambition 🚀",
+      "Your voice 🎧",
+      "Your thoughtfulness 🌸",
+      "Your strength 💪",
+      "Your loyalty 🫶",
+      "Your humor 😼",
+      "Your kindness 🍯",
+      "Your honesty 🧡",
+      "Your depth 🌙",
+      "Your energy ⚡",
+      "Your calm presence 🫧",
+      "Your passion ❤️‍🔥",
+      "Your uniqueness 🐾",
+      "Your resilience 🌻",
+      "Your heart 💖",
+      "And the way you choose me 🤍"
+    ];
+
+    const reasonsEl = document.getElementById('reasons');
+    reasons.forEach((txt, idx) => {
+      const div = document.createElement('div');
+      div.className = 'reason';
+      div.innerHTML = `<div class="num">${idx+1}</div><div>${txt}</div>`;
+      reasonsEl.appendChild(div);
+    });
+
+    // Toast
+    const toastEl = document.getElementById('toast');
+    let toastTimer;
+    function toast(msg){
+      toastEl.textContent = msg;
+      toastEl.classList.add('show');
+      clearTimeout(toastTimer);
+      toastTimer = setTimeout(()=> toastEl.classList.remove('show'), 2300);
+    }
+  </script>
+</body>
+</html>
